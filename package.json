@@ -1,10 +1,12 @@
 {
     "name": "my-electron-app",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "electron-builder --win"
+        "start": "electron .",
+        "build": "electron-builder --win",
+        "release": "electron-builder --win --publish always"
     },
     "keywords": [],
     "author": "",
