@@ -3,7 +3,7 @@ const { autoUpdater } = require("electron-updater");
 
 function createWindow() {
     // Create the browser window.
-    let win = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
@@ -11,17 +11,21 @@ function createWindow() {
         },
     });
 
-    // Load index.html of the app.
-    win.loadFile("index.html");
+    // and load the index.html of the app.
+    mainWindow.loadFile("index.html");
+
+    // Check for updates after mainWindow is ready to be shown
+    mainWindow.once("ready-to-show", () => {
+        autoUpdater.checkForUpdatesAndNotify();
+    });
 }
 
 app.whenReady().then(createWindow);
 
-app.on("ready", () => {
-    autoUpdater.checkForUpdatesAndNotify();
+app.on("window-all-closed", function () {
+    if (process.platform !== "darwin") app.quit();
 });
 
-autoUpdater.on("update-downloaded", (event, releaseNotes, releaseName) => {
-    // Quit and install the update after it is downloaded
-    autoUpdater.quitAndInstall();
+app.on("activate", function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
