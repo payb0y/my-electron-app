@@ -29,3 +29,19 @@ app.on("window-all-closed", function () {
 app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
+
+autoUpdater.on("error", (error) => {
+    console.error("Update error:", error);
+});
+
+autoUpdater.on("update-available", () => {
+    console.log("Update available.");
+});
+
+autoUpdater.on("update-not-available", () => {
+    console.log("No update available.");
+});
+
+autoUpdater.on("update-downloaded", () => {
+    console.log("Update downloaded; will install now");
+});
