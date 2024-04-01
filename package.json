@@ -1,23 +1,33 @@
 {
-  "name": "my-electron-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "electron": "^29.1.6",
-    "electron-builder": "^24.13.3"
-  },
-  "build": {
-  "appId": "com.test.app",
-  "productName": "Testapp",
-  "win": {
-    "target": "portable"
+    "name": "my-electron-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "electron-builder --win"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^29.1.6",
+        "electron-builder": "^24.13.3"
+    },
+    "build": {
+        "appId": "com.test.app",
+        "productName": "Testapp",
+        "win": {
+            "target": "portable"
+        },
+        "publish": [
+            {
+                "provider": "github",
+                "owner": "payb0y",
+                "repo": "my-electron-app"
+            }
+        ]
+    },
+    "dependencies": {
+        "electron-updater": "^6.1.8"
     }
-  }
 }
